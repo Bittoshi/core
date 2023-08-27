@@ -4,27 +4,27 @@ repos:
       - id: type-check
         name: Try to type-check
         language: system
-        entry: yarn lint
+        entry: pnpm lint
         stages: [commit]
         pass_filenames: false
 
       - id: build
         name: Try to build
         language: system
-        entry: yarn build
+        entry: pnpm build
         stages: [commit]
         pass_filenames: false
 
       - id: lint
         name: Try to lint
         language: system
-        entry: yarn lint
+        entry: pnpm lint
         stages: [commit]
         pass_filenames: false
 
       - id: format
         name: Try to format
         language: system
-        entry: yarn format
+        entry: pnpm format
         stages: [commit]
         pass_filenames: false
