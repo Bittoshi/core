@@ -1,0 +1,55 @@
+{
+	"name": "bittoshi-core",
+	"version": "0.0.1-alpha.0",
+	"description": "Monolith service for smart home management",
+	"main": "dist/index.js",
+	"prisma": {
+		"schema": "src/database/schema/bittoshi.prisma"
+	},
+	"scripts": {
+		"type-check": "tsc src/*.ts --noEmit",
+		"lint:fix": "pnpm run lint --fix",
+		"build": "sh scripts/build.sh",
+		"setup": "sh scripts/setup.sh",
+		"lint": "eslint . --ext .ts,.js",
+		"format": "pnpm prettier --write src",
+		"start": "sh scripts/start.sh production",
+		"format:check": "pnpm prettier --check src",
+		"start:dev": "sh scripts/start.sh development"
+	},
+	"keywords": [
+		"IoT",
+		"Smart Home",
+		"Monolith",
+		"Zigbee",
+		"MQTT",
+		"Node.js",
+		"Express",
+		"TypeScript",
+		"PostgreSQL",
+		"Prisma",
+		"Docker",
+		"Docker Compose"
+	],
+	"author": "Csongor Szegelti<csonger.szegleti@protonmail.com>, Bence Markus<markusbence@outlook.com>",
+	"license": "SEE LICENSE IN LICENSE",
+	"dependencies": {
+		"express": "^4.18.2",
+		"prisma": "^5.2.0"
+	},
+	"devDependencies": {
+		"@types/cors": "^2.8.13",
+		"@types/express": "^4.17.17",
+		"@types/node": "^20.5.6",
+		"@typescript-eslint/eslint-plugin": "^6.4.1",
+		"@typescript-eslint/parser": "^6.4.1",
+		"esbuild": "^0.19.2",
+		"eslint": "^8.48.0",
+		"eslint-config-prettier": "^9.0.0",
+		"nodemon": "^3.0.1",
+		"prettier": "^3.0.2",
+		"prisma-dbml-generator": "^0.10.0",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.1.6"
+	}
+}
