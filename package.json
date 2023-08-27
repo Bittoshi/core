@@ -34,6 +34,7 @@
 	"author": "Csongor Szegelti<csonger.szegleti@protonmail.com>, Bence Markus<markusbence@outlook.com>",
 	"license": "SEE LICENSE IN LICENSE",
 	"dependencies": {
+		"@prisma/client": "5.2.0",
 		"express": "^4.18.2",
 		"prisma": "^5.2.0"
 	},
