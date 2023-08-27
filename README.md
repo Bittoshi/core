@@ -4,7 +4,7 @@ Monolith service for smart home management
 
 ## Prerequisites
 
-Centrs core is built using Node.js and Express. To run the service, you will need to install the following:
+Bittoshi core is built using Node.js and Express. To run the service, you will need to install the following:
 
 - [Node.js, latest LTS](https://nodejs.org/en/)
 - [PostgreSQL, latest version](https://www.postgresql.org/download/)
