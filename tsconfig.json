@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"rootDir": ".",
+		"baseUrl": ".",
+		"allowJs": true,
+		"outDir": "dist",
+		"sourceMap": true,
+		"target": "ESNext",
+		"module": "ESNext",
+		"alwaysStrict": true,
+		"skipLibCheck": false,
+		"noImplicitAny": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "node",
+		"forceConsistentCasingInFileNames": true,
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	},
+	"include": ["src/**/*.ts", "src/**/*.d.ts"],
+	"exclude": ["node_modules", "dist", "**/*.spec.ts"]
+}

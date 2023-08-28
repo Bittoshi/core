@@ -11,7 +11,6 @@ module.exports = {
 		sourceType: 'module',
 	},
 	extends: ['prettier', 'eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-	ignorePatterns: ['node_modules/', 'dist/', 'coverage/', 'src/**/*.test.ts'],
 	rules: {
 		'no-tabs': 0,
 		'no-unused-expressions': 1,
@@ -22,4 +21,5 @@ module.exports = {
 		'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 	},
+	ignorePatterns: ['node_modules/', 'dist/', 'coverage/', 'src/**/*.test.ts'],
 };

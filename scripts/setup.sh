@@ -12,3 +12,4 @@ echo "$ Running required database migrations..."
 pnpm prisma migrate dev --name init
 
 echo "$ Project setup complete!"
+echo "----------------------------------------"
