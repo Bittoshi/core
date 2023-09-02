@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   core_db:
@@ -9,21 +9,33 @@ services:
       POSTGRES_DB: ${DB_NAME}
     volumes:
       - core_db_vol:/var/lib/postgresql/data
+    ports:
+      - 3010:3010
     healthcheck:
-      test:
-        [
-          "CMD",
-          "pg_isready",
-          "-q",
-          "-d",
-          "${DB_NAME}",
-          "-U",
-          "${DB_USER}"
-        ]
+      test: ['CMD', 'pg_isready', '-q', '-d', '${DB_NAME}', '-U', '${DB_USER}']
       interval: 20s
       timeout: 5s
       retries: 5
       start_period: 5s
+    networks:
+      - core_network
+  
+  core_backend:
+    image: bittoshi-core
+    build:
+      context: .
+      args:
+        DB_USER: ${DB_USER}
+        DB_PASSWORD: ${DB_PASSWORD}
+        DB_NAME: core_db
+    networks:
+      - core_network
+    depends_on:
+      core_db:
+        condition: service_healthy
+    links:
+      - core_db
+
 
 networks:
   core_network:
