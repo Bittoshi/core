@@ -1,1 +1,32 @@
 version: "3.8"
+
+services:
+  core_db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-q",
+          "-d",
+          "${DB_NAME}",
+          "-U",
+          "${DB_USER}"
+        ]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+
+networks:
+  core_network:
+
+volumes:
+  core_db_vol:
+    external: false
