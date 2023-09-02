@@ -7,6 +7,8 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - core_db_vol:/var/lib/postgresql/data
     healthcheck:
       test:
         [
@@ -22,7 +24,6 @@ services:
       timeout: 5s
       retries: 5
       start_period: 5s
-
 
 networks:
   core_network:
