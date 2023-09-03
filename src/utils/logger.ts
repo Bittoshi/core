@@ -1,27 +1,33 @@
-import winston from 'winston';
-import { format } from 'logform';
+import fs from 'fs';
+import pino from 'pino';
+import path from 'path';
+import stream from 'stream';
+import childProcess from 'child_process';
 
-export const logger = winston.createLogger({
-	format: format.combine(
-		format.errors({ stack: true }),
-		format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-		format.json(),
-	),
-	transports: [
-		new winston.transports.Console({
-			format: winston.format.combine(
-				winston.format.colorize({
-					message: false,
-				}),
-				winston.format.timestamp({
-					format: 'YYYY-MM-DD hh:mm:ss A',
-				}),
-				winston.format.align(),
-				winston.format.printf((info) => `[${info.timestamp}] ${info.level}: ${info.message.trim()}`),
-				winston.format.errors({ stack: true }),
-			),
-		}),
-		new winston.transports.File({ filename: 'logs/error.log', level: 'warn' }),
-		new winston.transports.File({ filename: 'logs/app.log', level: 'info' }),
-	],
-});
+const { env } = process;
+const cwd = process.cwd();
+const logDirPath = path.resolve('src', 'logs');
+
+if (!fs.existsSync(logDirPath)) {
+	fs.mkdirSync(logDirPath);
+}
+
+const tunel = new stream.PassThrough();
+const logger = pino(
+	{
+		transport: {
+			target: 'pino-pretty',
+			options: {
+				colorize: true,
+			},
+		},
+	},
+	tunel,
+);
+
+const child = childProcess.spawn(process.execPath, [require.resolve('pino-tee')], { cwd, env });
+
+tunel.pipe(child.stdin);
+tunel.pipe(process.stdout);
+
+export { logger };

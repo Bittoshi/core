@@ -19,28 +19,28 @@ export default class Server {
 		try {
 			this.privateKey = readFileSync(join(__dirname, 'keys', 'key.pem'), 'utf8');
 		} catch (error) {
-			logger.info('Could not find private key');
+			logger.error('Could not find private key');
 			process.exit(1);
 		}
 
 		try {
 			this.certificate = readFileSync(join(__dirname, 'keys', 'cert.pem'), 'utf8');
 		} catch (error) {
-			logger.info('Could not find certificate');
+			logger.error('Could not find certificate');
 			process.exit(1);
 		}
 
 		try {
 			this.httpServer = http.createServer(this.app);
 		} catch (error) {
-			logger.info('Could not create HTTP server');
+			logger.error('Could not create HTTP server');
 			process.exit(1);
 		}
 
 		try {
 			this.httpsServer = https.createServer({ key: this.privateKey, cert: this.certificate }, this.app);
 		} catch (error) {
-			logger.info('Could not create HTTPS server');
+			logger.error('Could not create HTTPS server');
 			process.exit(1);
 		}
 	}

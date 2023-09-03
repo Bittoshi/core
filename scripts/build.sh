@@ -16,8 +16,5 @@ mkdir dist
 echo "$ Compiling TypeScript files..."
 node scripts/build.js
 
-echo "$ Copying SSL key files..."
-cp -r keys dist/keys
-
-echo "$ Build complete!"
+echo "$ Build complete! 🎉"
 echo "----------------------------------------"
