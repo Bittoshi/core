@@ -1,7 +1,0 @@
-{
-	"watch": ["src"],
-	"legacyWatch": true,
-	"ext": "ts,mjs,js,json",
-	"exec": "pnpm build && node dist/index.js",
-	"ignore": ["src/**/*.spec.ts", "src/**/*.test.ts", "node_modules"]
-}
